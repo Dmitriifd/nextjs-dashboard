@@ -14,7 +14,7 @@ import { useActionState } from 'react';
 
 export default function Form({ customers }: { customers: CustomerField[] }) {
   const initialState: State = { message: null, errors: {} };
-  const [state, formAction] = useActionState(createInvoice, initialState);
+  const [state, formAction, isPending] = useActionState(createInvoice, initialState);
 
   return (
     <form action={formAction}>
@@ -132,7 +132,7 @@ export default function Form({ customers }: { customers: CustomerField[] }) {
         >
           Cancel
         </Link>
-        <Button type='submit'>Create Invoice</Button>
+        <Button disabled={isPending} type='submit'>Create Invoice</Button>
       </div>
     </form>
   );
